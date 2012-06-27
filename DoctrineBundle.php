@@ -25,6 +25,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Bridge\Doctrine\DependencyInjection\CompilerPass\DoctrineValidationPass;
 use Symfony\Bridge\Doctrine\DependencyInjection\CompilerPass\RegisterEventListenersAndSubscribersPass;
 use Symfony\Bridge\Doctrine\DependencyInjection\Security\UserProvider\EntityFactory;
+use Doctrine\Bundle\DoctrineBundle\DependencyInjection\CompilerPass\AddResolveTargetEntityListenerPass;
 
 /**
  * Bundle.
@@ -46,6 +47,7 @@ class DoctrineBundle extends Bundle
             $container->getExtension('security')->addUserProviderFactory(new EntityFactory('entity', 'doctrine.orm.security.user.provider'));
         }
         $container->addCompilerPass(new DoctrineValidationPass('orm'));
+        $container->addCompilerPass(new AddResolveTargetEntityListenerPass());
     }
 
     public function boot()

@@ -92,6 +92,8 @@
         </service>
 
         <!-- listeners -->
-        <service id="doctrine.orm.listeners.resolve_target_entity" class="%doctrine.orm.listeners.resolve_target_entity.class%" public="false" />
+        <service id="doctrine.orm.listeners.resolve_target_entity" class="%doctrine.orm.listeners.resolve_target_entity.class%" public="true">
+            <tag name="doctrine.event_listener" event="loadClassMetadata" />
+        </service>
     </services>
 </container>
